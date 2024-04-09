@@ -9,8 +9,8 @@ import com.example.productservicesst.dtos.FakeStoreProductDto;
 import java.util.List;
 import java.util.ArrayList;
 
-@Service
-public class FakeStoreProductService implements ProductService{
+@Service("fakeStoreProductServices")
+public class FakeStoreProductServices implements ProductService{
     @Override
     public Product getProductById(Long id) {
         RestTemplate restTemplate = new RestTemplate();
@@ -52,6 +52,11 @@ public class FakeStoreProductService implements ProductService{
 
 
         return product;
+    }
+
+    @Override
+    public Product createProduct(Product product) {
+        return null;
     }
 
 }

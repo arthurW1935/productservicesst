@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: fake_store
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "6969:5432"
+
+volumes:
+  postgres_data:
