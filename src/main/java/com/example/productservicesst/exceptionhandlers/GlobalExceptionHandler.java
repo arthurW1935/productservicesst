@@ -1,6 +1,7 @@
 package com.example.productservicesst.exceptionhandlers;
 
 import com.example.productservicesst.dtos.ExceptionDto;
+import com.example.productservicesst.exceptions.CategoryNotFoundException;
 import com.example.productservicesst.exceptions.ProductNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,15 @@ public class GlobalExceptionHandler {
         ExceptionDto dto = new ExceptionDto();
         dto.setMessage("Invalid productId " + productNotFoundException.getId() + " passed");
         dto.setResolution("ProductNotFoundException caught");
+        ResponseEntity<ExceptionDto> response = new ResponseEntity<>(dto, HttpStatus.BAD_REQUEST);
+        return response;
+    }
+
+    @ExceptionHandler(CategoryNotFoundException.class)
+    public ResponseEntity<ExceptionDto> handleCategoryNotFoundException(CategoryNotFoundException categoryNotFoundException) {
+        ExceptionDto dto = new ExceptionDto();
+        dto.setMessage("Invalid categoryId " + categoryNotFoundException.getId() + " passed");
+        dto.setResolution("CategoryNotFoundException caught");
         ResponseEntity<ExceptionDto> response = new ResponseEntity<>(dto, HttpStatus.BAD_REQUEST);
         return response;
     }
